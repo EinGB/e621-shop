@@ -4,72 +4,193 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>e621.shop</title>
-  <meta name="description" content="e621.shop GitHub Pages test site" />
+  <meta name="description" content="Personal homepage" />
   <style>
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #0f172a, #111827 55%, #020617);
-      color: #f8fafc;
-      display: grid;
-      place-items: center;
+    :root{
+      --bg:#171915;
+      --panel:rgba(22,24,20,.72);
+      --line:rgba(255,255,255,.12);
+      --text:#f5f2e8;
+      --muted:#c8c4b7;
+      --accent:#d9df75;
+      --accent2:#ef6d62;
     }
-    .card {
-      width: min(92vw, 720px);
-      padding: 48px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 24px;
-      background: rgba(255,255,255,.06);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 30px 80px rgba(0,0,0,.35);
-      text-align: center;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(219,225,117,.10), transparent 32%),
+        radial-gradient(circle at 80% 12%, rgba(239,109,98,.08), transparent 28%),
+        var(--bg);
+      min-height:100vh;
+      overflow-x:hidden;
     }
-    .tag {
-      display: inline-block;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.09);
-      font-size: 14px;
-      color: #cbd5e1;
-      margin-bottom: 18px;
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.08;
+      background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(to bottom,black,transparent 70%);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(44px, 9vw, 82px);
-      letter-spacing: -0.05em;
+    .hero{
+      position:relative;
+      min-height:72vh;
+      display:flex;
+      align-items:flex-end;
+      isolation:isolate;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
     }
-    p {
-      margin: 18px auto 0;
-      max-width: 540px;
-      color: #94a3b8;
-      font-size: 18px;
-      line-height: 1.7;
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom,rgba(12,14,12,.08) 10%,rgba(12,14,12,.28) 52%,var(--bg) 100%);
+      z-index:-1;
     }
-    .status {
-      margin-top: 28px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #d1fae5;
-      font-size: 15px;
+    .banner{
+      position:absolute; inset:-3%;
+      width:106%; height:106%;
+      object-fit:cover;
+      object-position:center;
+      filter:saturate(.88) contrast(1.02) brightness(.88);
+      transform:scale(1.03);
+      z-index:-2;
+      will-change:transform;
     }
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 16px #34d399;
+    .hero-inner{width:min(1120px,92vw);margin:0 auto;padding:0 0 64px}
+    .eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#ece9cf;opacity:.8}
+    h1{font-size:clamp(56px,10vw,118px);line-height:.86;letter-spacing:-.06em;margin:12px 0 18px;text-shadow:0 14px 45px rgba(0,0,0,.35)}
+    .intro{max-width:620px;font-size:18px;line-height:1.8;color:#eee9dc;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+    .wrap{width:min(1120px,92vw);margin:0 auto;padding:56px 0 88px}
+    .grid{display:grid;grid-template-columns:1.25fr .75fr;gap:22px}
+    .card{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:var(--panel);
+      backdrop-filter:blur(16px);
+      box-shadow:0 22px 60px rgba(0,0,0,.18);
+      padding:28px;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
     }
+    .card:hover{transform:translateY(-4px);border-color:rgba(217,223,117,.35);background:rgba(28,30,25,.82)}
+    .card h2{margin:0 0 12px;font-size:24px}
+    .card p{margin:0;color:var(--muted);line-height:1.75}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;gap:9px;
+      padding:11px 15px;border-radius:999px;
+      color:var(--text);text-decoration:none;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.035);
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(217,223,117,.45);background:rgba(217,223,117,.09)}
+    .status{display:flex;align-items:center;gap:9px;color:#e6eaa8;font-size:14px;margin-top:20px}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(217,223,117,.95)}
+    .mini{display:grid;gap:12px;margin-top:16px}
+    .mini div{padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);color:var(--muted)}
+    footer{padding:20px 0 42px;text-align:center;color:#8f9087;font-size:13px}
+    .spark{
+      position:fixed;
+      width:8px;height:8px;
+      border-radius:50%;
+      pointer-events:none;
+      z-index:9999;
+      background:var(--accent2);
+      box-shadow:0 0 12px currentColor;
+      animation:burst .72s ease-out forwards;
+    }
+    @keyframes burst{
+      0%{transform:translate(-50%,-50%) scale(1);opacity:1}
+      100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(0);opacity:0}
+    }
+    .cursor-glow{
+      position:fixed;
+      width:220px;height:220px;border-radius:50%;
+      pointer-events:none;z-index:0;
+      background:radial-gradient(circle,rgba(217,223,117,.09),transparent 66%);
+      transform:translate(-50%,-50%);
+      transition:opacity .2s ease;
+    }
+    @media(max-width:760px){
+      .hero{min-height:62vh}.hero-inner{padding-bottom:38px}.grid{grid-template-columns:1fr}.wrap{padding-top:30px}.card{padding:22px}
+      .banner{object-position:center center}
+    }
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.cursor-glow{display:none}}
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="tag">GitHub Pages</div>
-    <h1>e621.shop</h1>
-    <p>这是一个部署在 GitHub Pages 上的测试网页。看到这个页面，说明静态网站已经成功上线。</p>
-    <div class="status"><span class="dot"></span> Site deployed successfully</div>
+  <div class="cursor-glow" id="glow"></div>
+
+  <header class="hero" id="top">
+    <img class="banner" id="banner" src="assets/banner.webp" alt="主页主题横幅" />
+    <div class="hero-inner">
+      <div class="eyebrow">personal homepage · e621.shop</div>
+      <h1>EinGB</h1>
+      <div class="intro">一个简单的个人主页实验。现在先用这张长图做主题视觉，后面可以继续加作品、音乐、绘画、链接和其他内容。</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+      <article class="card">
+        <h2>About</h2>
+        <p>这里可以放你的个人介绍、正在做的项目，以及你希望别人第一眼看到的内容。这个页面目前完全托管在 GitHub Pages 上。</p>
+        <div class="links">
+          <a class="btn" href="https://github.com/EinGB" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="btn" href="#links">Links ↓</a>
+        </div>
+        <div class="status"><span class="dot"></span> online · e621.shop</div>
+      </article>
+
+      <aside class="card" id="links">
+        <h2>Now</h2>
+        <div class="mini">
+          <div>🎵 Music production</div>
+          <div>✏️ Drawing practice</div>
+          <div>🧪 Web experiments</div>
+        </div>
+      </aside>
+    </section>
   </main>
+
+  <footer>e621.shop · built with GitHub Pages</footer>
+
+  <script>
+    const banner = document.getElementById('banner');
+    const glow = document.getElementById('glow');
+
+    window.addEventListener('pointermove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+      if (window.innerWidth > 760) {
+        const x = (e.clientX / innerWidth - .5) * 10;
+        const y = (e.clientY / innerHeight - .5) * 7;
+        banner.style.transform = `scale(1.04) translate(${x}px, ${y}px)`;
+      }
+    });
+
+    window.addEventListener('click', e => {
+      const colors = ['#d9df75','#ef6d62','#f4d7a4','#a8d9c4'];
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('span');
+        p.className = 'spark';
+        p.style.left = e.clientX + 'px';
+        p.style.top = e.clientY + 'px';
+        p.style.background = colors[i % colors.length];
+        const a = Math.random() * Math.PI * 2;
+        const d = 28 + Math.random() * 52;
+        p.style.setProperty('--x', Math.cos(a) * d + 'px');
+        p.style.setProperty('--y', Math.sin(a) * d + 'px');
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 760);
+      }
+    });
+  </script>
 </body>
 </html>
