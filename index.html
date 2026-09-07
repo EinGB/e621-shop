@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>e621.shop</title>
+  <meta name="description" content="e621.shop GitHub Pages test site" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #0f172a, #111827 55%, #020617);
+      color: #f8fafc;
+      display: grid;
+      place-items: center;
+    }
+    .card {
+      width: min(92vw, 720px);
+      padding: 48px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+      text-align: center;
+    }
+    .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.09);
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 9vw, 82px);
+      letter-spacing: -0.05em;
+    }
+    p {
+      margin: 18px auto 0;
+      max-width: 540px;
+      color: #94a3b8;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .status {
+      margin-top: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d1fae5;
+      font-size: 15px;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 16px #34d399;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="tag">GitHub Pages</div>
+    <h1>e621.shop</h1>
+    <p>这是一个部署在 GitHub Pages 上的测试网页。看到这个页面，说明静态网站已经成功上线。</p>
+    <div class="status"><span class="dot"></span> Site deployed successfully</div>
+  </main>
+</body>
+</html>
